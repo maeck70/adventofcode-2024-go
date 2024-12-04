@@ -27,14 +27,14 @@ func main() {
 	// Horizontal L2R
 	for y := 0; y < height; y++ {
 		for x := 0; x < width; x++ {
-			data.scan(x, y, word, 1, 0)
-			data.scan(x, y, word, 0, 1)
-			data.scan(x, y, word, -1, 0)
-			data.scan(x, y, word, 0, -1)
-			data.scan(x, y, word, 1, 1)
-			data.scan(x, y, word, 1, -1)
-			data.scan(x, y, word, -1, 1)
-			data.scan(x, y, word, -1, -1)
+			for _, dx := range []int{-1, 0, 1} {
+				for _, dy := range []int{-1, 0, 1} {
+					if dx == 0 && dy == 0 {
+						continue
+					}
+					data.scan(x, y, word, dx, dy)
+				}
+			}
 		}
 	}
 
@@ -46,12 +46,12 @@ func (data matrix_t) scan(x int, y int, w string, dx int, dy int) {
 		return
 	}
 
-	log.Printf("Check %s at %d,%d", string(w[0]), x, y)
+	//log.Printf("Check %s at %d,%d", string(w[0]), x, y)
 
 	cc := data[y][x]
 	cw := string(w[0])
 	if cc == cw {
-		log.Printf("Found %s at %d,%d", string(w[0]), x, y)
+		//log.Printf("Found %s at %d,%d", string(w[0]), x, y)
 		if len(w) == 1 {
 			log.Printf("Found %s at %d,%d", word, x, y)
 			found++

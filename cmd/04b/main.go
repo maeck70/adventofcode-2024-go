@@ -61,13 +61,16 @@ func main() {
 	log.Printf("Found %s %d times", word, found)
 }
 
+// scan will check the first top left hand character of the map
+// If that matches, the full map is scanned to see if it matches in full
 func (data matrix_t) scan(x int, y int, m map_t) {
-	log.Printf("Check %s at %d,%d", m[0], x, y)
+	log.Printf("Check %s at %d,%d", m[0][0], x, y)
 	if m[0][0] == data[y][x] {
 		data.scanMap(x, y, m)
 	}
 }
 
+// Scan a whole map, if matches, the found counter goes up by one
 func (data matrix_t) scanMap(x int, y int, m map_t) {
 	for ym := 0; ym < len(m); ym++ {
 		for xm := 0; xm < len(m[ym]); xm++ {
