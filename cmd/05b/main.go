@@ -26,12 +26,15 @@ func main() {
 
 	skip = make([]int, 0)
 
+	// Make skip list for updates that are valid
 	for upd := range updates {
 		if check(rules, updates[upd]) {
 			skip = append(skip, upd)
 		}
 	}
 
+	// Find invalid pages and swap the rule before/after
+	// Do this until no invalid pages in the updates are found
 	for {
 		invalids := 0
 		for upd := range updates {
