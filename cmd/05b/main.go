@@ -85,6 +85,7 @@ func findInvalidPage(rules []rule_t, update update_t) int {
 			// Check before
 			for i, unb := range update[:scan] {
 				if rn.pageAfter == unb {
+					// Swap pages
 					update[changeAfter(update, rn.pageBefore)] = rn.pageAfter
 					update[i] = rn.pageBefore
 					log.Printf("Invalid page: %d", unb)
