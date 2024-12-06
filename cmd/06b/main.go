@@ -76,7 +76,8 @@ func main() {
 					log.Printf("Iteration %d, %d", ox, oy)
 					// printMap(m)
 					// fmt.Println("---")
-					// printMap(c)
+					printMap(c)
+					fmt.Println("---")
 					// fmt.Print("Press 'Enter' to continue...")
 					// bufio.NewReader(os.Stdin).ReadBytes('\n')
 				}
@@ -132,18 +133,6 @@ func findPos(m *map_t) pos_t {
 	}
 	log.Fatal("Starting position not found")
 	return pos_t{-1, -1}
-}
-
-func countLocations(m map_t) int {
-	total := 0
-	for y := range m {
-		for x := range m[y] {
-			if m[x][y] == "*" {
-				total++
-			}
-		}
-	}
-	return total
 }
 
 func loadFile(fileName string) map_t {
